@@ -1,0 +1,11 @@
+clear
+f=imread('F:\ch4_images\cameraman.tif');
+[c,s]=wavefast(f,1,'sym4');%快速小波变换
+figure;
+wave2gray(c,s,-6);
+[nc,y]=wavecut('a',c,s);%近似系数置0
+figure;
+wave2gray(nc,s,-6);
+edges=abs(waveback(nc,s,'sym4'));%边缘重构
+figure;
+imshow(mat2gray(edges));

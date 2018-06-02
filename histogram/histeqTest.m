@@ -1,0 +1,21 @@
+clear all;
+%直方图均值化效果,彩色图像
+orgImg=imread('F:\building.jpg'); 
+R = orgImg(:,:,1);  
+G = orgImg(:,:,2);  
+B = orgImg(:,:,3);  
+rstImg=zeros(size(orgImg));  
+% R = histeq(R, 256);  
+% G = histeq(G, 256);  
+% B = histeq(B, 256);  
+R = adapthisteq(R);  
+G = adapthisteq(G);  
+B = adapthisteq(B);  
+rstImg(:,:,1) = R;  
+rstImg(:,:,2) = G;  
+rstImg(:,:,3) = B;  
+figure;
+subplot(1,2,1);
+imshow(orgImg);
+subplot(1,2,2);
+imshow(mat2gray(rstImg));
